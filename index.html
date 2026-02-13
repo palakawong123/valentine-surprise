@@ -1,102 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-  <title>For My Love Nong Fern ❤️</title>
-  <style>
-    body {
-      background: linear-gradient(to bottom right, #ff9ecf, #ffcce6);
-      text-align: center;
-      font-family: Arial, sans-serif;
-      padding-top: 120px;
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love Nong Fern ❤️</title>
 
-    h1 {
-      font-size: 45px;
-      margin-bottom: 40px;
-    }
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #f7a8c4;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+}
 
-    button {
-      padding: 15px 40px;
-      font-size: 20px;
-      border: none;
-      border-radius: 30px;
-      background-color: white;
-      color: #ff4da6;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+.container {
+    margin-top: 150px;
+}
 
-    button:hover {
-      background-color: #ffe6f2;
-    }
+button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    color: #ff4d88;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-    input {
-      padding: 10px;
-      font-size: 18px;
-      border-radius: 10px;
-      border: none;
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    #message {
-      margin-top: 40px;
-      font-size: 22px;
-      display: none;
-      white-space: pre-line;
-    }
-
-    #wrong {
-      margin-top: 20px;
-      color: red;
-      display: none;
-    }
-  </style>
+input {
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+    text-align: center;
+}
+#content {
+    display: none;
+    margin-top: 30px;
+}
+</style>
 </head>
+
 <body>
 
-  <h1>For My Love Nong Fern ❤️</h1>
+<div class="container">
+    <h1>For My Love Nong Fern ❤️</h1>
 
-  <button onclick="askPassword()">Start สิค้าบสุดสวย</button>
+    <button onclick="showInput()">Start คำบางสุดสวย</button>
 
-  <div id="passwordBox" style="display:none;">
-    <br>
-    <input type="password" id="password" placeholder="ใส่รหัสตรงนี้นะค้าบ 💕">
-    <br><br>
-    <button onclick="checkPassword()">ยืนยัน</button>
-    <div id="wrong">รหัสไม่ถูกนะค้าบ ลองใหม่อีกที 💗</div>
-  </div>
+    <div id="passwordSection" style="display:none;">
+        <p>คำใบ้: ตัวเลขที่มีความหมายกับเรา (11166)</p>
+        <input type="password" id="password" placeholder="ใส่รหัสที่นี่">
+        <br><br>
+        <button onclick="checkPassword()">ยืนยัน</button>
+    </div>
 
-  <div id="message">
-คำใบ้: ตัวเลขที่มีความหมายกับเรา 💌 (11166)
+    <div id="content">
+        <p>
+            ขอบคุณที่อยู่ข้างกันนะ 🤍<br>
+            ถึงบางวันจะทะเลาะกันบ้าง<br>
+            แต่เค้ารักเธอที่สุดนะ<br><br>
+            อยู่ด้วยกันไปนาน ๆ เลยน้า<br>
+            น้องเฟิร์น ❤️
+        </p>
+    </div>
+</div>
 
-ขอบคุณที่อยู่ข้างกันน่ะ 🤍  
-ถึงบางวันจะทะเลาะกันบ้าง  
-แต่เค้ารักเธอที่สุดนะ  
+<!-- 🎵 เพลง -->
+<audio id="bgmusic" src="love.mp3" loop></audio>
 
-อยู่ด้วยกันไปนาน ๆ เลยนะ  
-น้อนนเฟิร์นน💕
-  </div>
+<script>
+function showInput() {
+    document.getElementById("passwordSection").style.display = "block";
+}
 
-  <audio id="bgmusic" src="love.mp3" loop></audio>
+function checkPassword() {
+    const password = document.getElementById("password").value;
+    const music = document.getElementById("bgmusic");
 
-  <script>
-    function askPassword() {
-      document.getElementById("passwordBox").style.display = "block";
+    if (password === "11166") {
+        document.getElementById("content").style.display = "block";
+
+        music.play().catch(function(error) {
+            console.log("Autoplay blocked:", error);
+        });
+
+    } else {
+        alert("รหัสไม่ถูกต้อง 💔");
     }
-
-    function checkPassword() {
-      var pass = document.getElementById("password").value;
-      if (pass === "11166") {
-        document.getElementById("passwordBox").style.display = "none";
-        document.getElementById("message").style.display = "block";
-        document.getElementById("bgmusic").play();
-      } else {
-        document.getElementById("wrong").style.display = "block";
-      }
-    }
-  </script>
+}
+</script>
 
 </body>
 </html>
