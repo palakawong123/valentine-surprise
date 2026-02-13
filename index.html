@@ -51,7 +51,7 @@ input {
     <button onclick="showInput()">Start คำบางสุดสวย</button>
 
     <div id="passwordSection" style="display:none;">
-        <p>คำใบ้: วันที่คบวันแรกวันที่เท่าไหร่น้าาา วันเดือนปี (5ตัว)</p>
+        <p>คำใบ้: วันแรกจนถึงวันนี้ 14กุมภาพันธ์2569 คำถามคือเราคบกันกี่วันแล้ว? </p>
         <input type="password" id="password" placeholder="ใส่รหัสที่นี่">
         <br><br>
         <button onclick="checkPassword()">ยืนยัน</button>
@@ -80,7 +80,7 @@ function checkPassword() {
     const password = document.getElementById("password").value;
     const music = document.getElementById("bgmusic");
 
-    if (password === "11166") {
+    if (password === "837") {
         document.getElementById("content").style.display = "block";
 
         music.play().catch(function(error) {
