@@ -50,6 +50,19 @@ video {
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
+.music-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    background: white;
+    color: #ff4d88;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -73,7 +86,7 @@ video {
 
     <div id="content">
 
-        <!-- 🎬 คลิป -->
+        <!-- 🎬 วิดีโอ -->
         <video id="loveVideo">
             <source src="fern1.mp4" type="video/mp4">
         </video>
@@ -91,7 +104,14 @@ video {
 </div>
 
 <!-- 🎵 เพลง -->
-<audio id="bgmusic" src="love.mp3" loop></audio>
+<audio id="bgmusic" loop>
+    <source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🎵 ปุ่มเปิด/ปิดเพลง -->
+<button class="music-btn" onclick="toggleMusic()">
+🎵 เปิด / ปิด เพลง
+</button>
 
 <script>
 function showInput() {
@@ -106,10 +126,21 @@ function checkPassword() {
     if (password === "837") {
         document.getElementById("content").style.display = "block";
 
+        // เล่นเพลงและวิดีโอ
         music.play().catch(() => {});
         video.play().catch(() => {});
     } else {
         alert("รหัสไม่ถูกต้อง 💔");
+    }
+}
+
+function toggleMusic() {
+    const music = document.getElementById("bgmusic");
+
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
     }
 }
 </script>
