@@ -1,26 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>For You ❤️</title>
+  <title>For My Love Nong Fern ❤️</title>
   <style>
     body {
-      background-color: pink;
+      background: linear-gradient(to bottom right, #ff9ecf, #ffcce6);
       text-align: center;
-      font-family: Arial;
-      padding-top: 100px;
+      font-family: Arial, sans-serif;
+      padding-top: 120px;
+      color: white;
     }
+
     h1 {
-      font-size: 50px;
-      color: white;
+      font-size: 45px;
+      margin-bottom: 40px;
     }
-    p {
-      font-size: 25px;
-      color: white;
+
+    button {
+      padding: 15px 40px;
+      font-size: 20px;
+      border: none;
+      border-radius: 30px;
+      background-color: white;
+      color: #ff4da6;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #ffe6f2;
+    }
+
+    #message {
+      margin-top: 40px;
+      font-size: 22px;
+      display: none;
+      white-space: pre-line;
     }
   </style>
 </head>
 <body>
-  <h1>Happy Valentine's Day 💖</h1>
-  <p>เค้ารักเธอนะน้อนนเฟิร์น 🥰</p>
+
+  <h1>For My Love Nong Fern ❤️</h1>
+
+  <button onclick="showMessage()">Start สิค้าบสุดสวย</button>
+
+  <div id="message">
+    คำใบ้: 11166 💌
+
+    ขอบคุณที่อยู่ข้างกันน่ะ 🤍  
+    ถึงบางวันจะทะเลาะกันบ้าง  
+    แต่เค้ารักเธอที่สุดนะ  
+
+    อยู่ด้วยกันไปนาน ๆ เลยนะ  
+    น้อนนเฟิร์นน💕
+  </div>
+
+  <script>
+    function showMessage() {
+      document.getElementById("message").style.display = "block";
+    }
+  </script>
+
 </body>
 </html>
