@@ -9,14 +9,14 @@
 body {
     margin: 0;
     padding: 0;
-    background: #f7a8c4;
+    background: linear-gradient(to bottom, #f7a8c4, #f48fb1);
     font-family: Arial, sans-serif;
     text-align: center;
     color: white;
 }
 
 .container {
-    margin-top: 150px;
+    margin-top: 100px;
 }
 
 button {
@@ -36,9 +36,23 @@ input {
     margin-top: 10px;
     text-align: center;
 }
+
 #content {
     display: none;
     margin-top: 30px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+video {
+    width: 260px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 </style>
 </head>
@@ -51,13 +65,20 @@ input {
     <button onclick="showInput()">Start คำบางสุดสวย</button>
 
     <div id="passwordSection" style="display:none;">
-        <p>คำใบ้: วันแรกจนถึงวันนี้ 14กุมภาพันธ์2569 คำถามคือเราคบกันกี่วันแล้ว? </p>
+        <p>คำใบ้: วันแรกจนถึงวันนี้ 14 กุมภาพันธ์ 2569 เราคบกันกี่วันแล้ว?</p>
         <input type="password" id="password" placeholder="ใส่รหัสที่นี่">
         <br><br>
         <button onclick="checkPassword()">ยืนยัน</button>
     </div>
 
     <div id="content">
+
+        <!-- 🎬 คลิป -->
+        <video id="loveVideo">
+            <source src="fern1.mp4" type="video/mp4">
+        </video>
+
+        <!-- 💌 ข้อความ -->
         <p>
             ขอบคุณที่อยู่ข้างกันนะ 🤍<br>
             ถึงบางวันจะทะเลาะกันบ้าง<br>
@@ -65,6 +86,7 @@ input {
             อยู่ด้วยกันไปนาน ๆ เลยน้า<br>
             น้องเฟิร์น ❤️
         </p>
+
     </div>
 </div>
 
@@ -79,14 +101,13 @@ function showInput() {
 function checkPassword() {
     const password = document.getElementById("password").value;
     const music = document.getElementById("bgmusic");
+    const video = document.getElementById("loveVideo");
 
     if (password === "837") {
         document.getElementById("content").style.display = "block";
 
-        music.play().catch(function(error) {
-            console.log("Autoplay blocked:", error);
-        });
-
+        music.play().catch(() => {});
+        video.play().catch(() => {});
     } else {
         alert("รหัสไม่ถูกต้อง 💔");
     }
