@@ -86,12 +86,10 @@ video {
 
     <div id="content">
 
-        <!-- 🎬 วิดีโอ -->
-        <video id="loveVideo">
+        <video id="loveVideo" muted loop>
             <source src="fern1.mp4" type="video/mp4">
         </video>
 
-        <!-- 💌 ข้อความ -->
         <p>
             ขอบคุณที่อยู่ข้างกันนะ 🤍<br>
             ถึงบางวันจะทะเลาะกันบ้าง<br>
@@ -104,7 +102,7 @@ video {
 </div>
 
 <!-- 🎵 เพลง -->
-<audio id="bgmusic" loop>
+<audio id="bgmusic" autoplay loop>
     <source src="love.mp3" type="audio/mpeg">
 </audio>
 
@@ -126,9 +124,11 @@ function checkPassword() {
     if (password === "837") {
         document.getElementById("content").style.display = "block";
 
-        // เล่นเพลงและวิดีโอ
-        music.play().catch(() => {});
+        // เล่นวิดีโอ
         video.play().catch(() => {});
+
+        // เล่นเพลง
+        music.play().catch(() => {});
     } else {
         alert("รหัสไม่ถูกต้อง 💔");
     }
@@ -138,11 +138,17 @@ function toggleMusic() {
     const music = document.getElementById("bgmusic");
 
     if (music.paused) {
-        music.play();
+        music.play().catch(() => {});
     } else {
         music.pause();
     }
 }
+
+// กันกรณี browser บล็อก autoplay
+window.addEventListener("click", function () {
+    const music = document.getElementById("bgmusic");
+    music.play().catch(() => {});
+}, { once: true });
 </script>
 
 </body>
