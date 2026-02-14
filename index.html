@@ -13,6 +13,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     color: white;
+    overflow: hidden;
 }
 
 .container {
@@ -27,6 +28,11 @@ button {
     color: #ff4d88;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
 }
 
 input {
@@ -40,7 +46,6 @@ input {
 #content {
     display: none;
     margin-top: 30px;
-    animation: fadeIn 1s ease-in-out;
 }
 
 video {
@@ -50,22 +55,59 @@ video {
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
-.music-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 15px;
-    border-radius: 20px;
-    border: none;
-    background: white;
-    color: #ff4d88;
-    font-weight: bold;
+/* 🎁 Gift */
+.gift-box {
+    font-size: 70px;
     cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.gift-box:hover {
+    transform: scale(1.2) rotate(10deg);
+}
+
+/* ✨ Unlock effect */
+.unlock-effect {
+    animation: glow 1s ease-in-out 3;
+}
+
+@keyframes glow {
+    0% { text-shadow: 0 0 5px white; }
+    50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff4d88; }
+    100% { text-shadow: 0 0 5px white; }
+}
+
+/* 💖 Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* 🎉 Confetti */
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: white;
+    top: 0;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 </style>
 </head>
@@ -73,7 +115,7 @@ video {
 <body>
 
 <div class="container">
-    <h1>For My Love Nong Fern ❤️</h1>
+    <h1 id="title">For My Love Nong Fern ❤️</h1>
 
     <button onclick="showInput()">Start เลยครับสุดสวยของเค้า</button>
 
@@ -98,18 +140,15 @@ video {
             น้องเฟิร์น ❤️
         </p>
 
+        <div class="gift-box" onclick="openGift()">🎁</div>
+        <p>กดเปิดของขวัญสิค้าบ 💕</p>
+
     </div>
 </div>
 
-<!-- 🎵 เพลง -->
-<audio id="bgmusic" autoplay loop>
+<audio id="bgmusic" loop>
     <source src="love.mp3" type="audio/mpeg">
 </audio>
-
-<!-- 🎵 ปุ่มเปิด/ปิดเพลง -->
-<button class="music-btn" onclick="toggleMusic()">
-🎵 เปิด / ปิด เพลง
-</button>
 
 <script>
 function showInput() {
@@ -123,31 +162,50 @@ function checkPassword() {
 
     if (password === "837") {
         document.getElementById("content").style.display = "block";
+        video.play().catch(()=>{});
+        music.play().catch(()=>{});
 
-        // เล่นวิดีโอ
-        video.play().catch(() => {});
+        // ✨ ใส่เอฟเฟกต์หัวข้อ
+        const title = document.getElementById("title");
+        title.classList.add("unlock-effect");
 
-        // เล่นเพลง
-        music.play().catch(() => {});
+        createConfetti();
     } else {
         alert("รหัสไม่ถูกค้าบบคิดใหม่สิเด็กเอ๋อ 💔");
     }
 }
 
-function toggleMusic() {
-    const music = document.getElementById("bgmusic");
-
-    if (music.paused) {
-        music.play().catch(() => {});
-    } else {
-        music.pause();
+function openGift() {
+    for (let i = 0; i < 25; i++) {
+        createHeart();
     }
 }
 
-// กันกรณี browser บล็อก autoplay
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 30) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 4000);
+}
+
+function createConfetti() {
+    for (let i = 0; i < 40; i++) {
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.background = `hsl(${Math.random()*360},100%,70%)`;
+        document.body.appendChild(confetti);
+
+        setTimeout(() => confetti.remove(), 3000);
+    }
+}
+
 window.addEventListener("click", function () {
-    const music = document.getElementById("bgmusic");
-    music.play().catch(() => {});
+    document.getElementById("bgmusic").play().catch(()=>{});
 }, { once: true });
 </script>
 
